@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="CustomTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize attributes here -->
+        <item name="colorPrimary">@color/custom_primary</item>
+        <item name="colorAccent">@color/custom_accent</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorBackground">@color/background</item>
+
+
+    </style>
+</resources>
