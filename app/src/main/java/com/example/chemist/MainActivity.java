@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle("Maarjan");
+
 //        Button start_btn = (Button) findViewById(R.id.startbtn);
 //        start_btn.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View v) {

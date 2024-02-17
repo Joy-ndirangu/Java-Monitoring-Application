@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <item
+            android:id="@+id/profilepic"
+            android:icon="@drawable/baseline_account_circle_24"
+            android:contentDescription="@string/content_description_account"
+            app:showAsAction="ifRoom"
+            android:title="@string/profile" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/baseline_search_24"
+        android:contentDescription="@string/content_description_more"
+        app:showAsAction="ifRoom"
+        android:title="@string/search" />
+
+        <item
+            android:id="@+id/more"
+            android:icon="@drawable/baseline_more_vert_24"
+            android:contentDescription="@string/content_description_more"
+            app:showAsAction="ifRoom"
+            android:title="@string/more" />
+
+
+    </menu>

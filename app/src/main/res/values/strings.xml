@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Chemist</string>
     <string name="welcome">Welcome on Board</string>
+    <string name="title">Marjaan</string>
+    <string name="profile">profile</string>
+    <string name="search">search</string>
+    <string name="more">more</string>
+    <string name="content_description_title">This is the title</string>
+    <string name="content_description_account">This is the profile icon</string>
+    <string name="content_description_more">This displays more actions</string>
+
 </resources>
