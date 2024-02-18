@@ -5,13 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
     private static int SPLASH_SCREEN = 5000;
-//  Button start_btn;
 
 
     @Override
@@ -19,17 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setTitle("Maarjan");
 
-//        Button start_btn = (Button) findViewById(R.id.startbtn);
-//        start_btn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent;
-//                intent = new Intent(MainActivity.this,SignUp.class);
-//                startActivity(intent);
-//
-//            }
-//        });
 
 
         new Handler().postDelayed(new Runnable() {

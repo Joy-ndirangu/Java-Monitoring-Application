@@ -1,15 +1,28 @@
 package com.example.chemist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import android.widget.Toolbar;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class manager_home extends AppCompatActivity {
 
-    Toolbar topAppBar;
+
+    CardView cardEmployees;
+    CardView cardSchedules;
+    CardView cardTasks;
+    CardView cardInventory;
+    CardView cardSettings;
+    CardView cardLogout;
+
+
 
 
     @Override
@@ -17,34 +30,60 @@ public class manager_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_home);
 
+//
 
-        topAppBar = findViewById(R.id.topAppBar);
+//        for the grid layout
 
-        topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+        cardEmployees = findViewById(R.id.cardemployees);
+        cardSchedules = findViewById(R.id.cardschedule);
+        cardTasks = findViewById(R.id.cardtasks);
+        cardInventory = findViewById(R.id.cardinventory);
+        cardSettings = findViewById(R.id.cardSettings);
+        cardLogout = findViewById(R.id.cardLogout);
+
+        cardEmployees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle navigation icon press
+                Intent intent;
+                intent = new Intent(manager_home.this, newEmployee.class);
+                startActivity(intent);
+
+            }        });
+        cardSchedules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("Chat Clicked");
             }
         });
-
-        topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        cardTasks.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.profilepic:
-                        // Handle favorite icon press
-                        return true;
-                    case R.id.search:
-                        // Handle search icon press
-                        return true;
-                    case R.id.more:
-                        // Handle more item (inside overflow menu) press
-                        return true;
-                    default:
-                        return false;
-                }
+            public void onClick(View v) {
+                showToast("Profile Clicked");
+            }
+        });
+        cardInventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("Widget Clicked");
+            }
+        });
+        cardSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("Settings Clicked");
+            }
+        });
+        cardLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showToast("Logout Clicked");
             }
         });
 
     }
-}
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    }

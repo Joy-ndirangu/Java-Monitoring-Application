@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
         empbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent;
-                intent = new Intent(Login.this,newEmployee.class);
+                intent = new Intent(Login.this, manager_home.class);
                 startActivity(intent);
 
             }
