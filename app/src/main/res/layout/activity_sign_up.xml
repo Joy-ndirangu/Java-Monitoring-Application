@@ -111,7 +111,8 @@
         android:id="@+id/reg_btn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="REGISTER"/>
+        android:onClick="registerUser"
+        android:text="REGISTER" />
     <Button
         android:id="@+id/haveaccount_btn"
         android:layout_width="match_parent"
