@@ -34,7 +34,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/usernamelogin"
+            android:id="@+id/emaillogin"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Userame"
+                android:hint="Email"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,6 +62,13 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
 
 
     </LinearLayout>
@@ -70,13 +77,13 @@
         android:id="@+id/loginbtn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="LOGIN"></Button>
+        android:text="LOGIN"/>
     <Button
         android:id="@+id/noaccount"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:backgroundTint="@color/white"
         android:text="Don't have an account? SIGNUP"
-        android:textColor="@color/black"></Button>
+        android:textColor="@color/black"/>
 
 </LinearLayout>

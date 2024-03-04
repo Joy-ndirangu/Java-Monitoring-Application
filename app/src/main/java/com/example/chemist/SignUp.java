@@ -1,13 +1,21 @@
 package com.example.chemist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -16,8 +24,11 @@ public class SignUp extends AppCompatActivity {
     //variables
     TextInputLayout regName, regUsername, regEmail, regPassword, regPhone;
     Button reg_btn, tologin;
+    ProgressBar progressBar;
     FirebaseDatabase rootnode;
     DatabaseReference reference;
+    private FirebaseAuth mAuth;
+// ...
 
 
     @Override
@@ -33,6 +44,7 @@ public class SignUp extends AppCompatActivity {
         regPhone = findViewById(R.id.phone);
         reg_btn = (Button) findViewById(R.id.reg_btn);
         tologin = (Button) findViewById(R.id.haveaccount_btn);
+        progressBar = findViewById(R.id.progressbar);
 
         //firebase
 
@@ -40,6 +52,9 @@ public class SignUp extends AppCompatActivity {
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //setting visibilit for the progressbar
+                progressBar.setVisibility(View.VISIBLE);
 
                 //for users to store their data in firebase once they click register button
                 //getinstance will call to the rootnode which has al the database from firebase of the project
@@ -61,16 +76,44 @@ public class SignUp extends AppCompatActivity {
                 String phone = regPhone.getEditText().getText().toString();
 
 
+//for authentication using email and password
+                // Initialize Firebase Auth
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+
+                                if (task.isSuccessful()) {
+
+                                    Toast.makeText(SignUp.this, "Registration successful.",
+                                            Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(SignUp.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+
                 //calling the userhelper class
                 UserHelperClass helperClass = new UserHelperClass(name, username, email, password, phone);
-
-                // to add more users so that each have an id use child and pass what you'd want to use as id
+//
+//                // to add more users so that each have an id use child and pass what you'd want to use as id
                 reference.child(phone).setValue(helperClass);//value that will be passed is stored in the database
 
                 //Click event for the Register button to redirect to Login page
-                Intent intent;
-                intent = new Intent(SignUp.this, Login.class);
-                startActivity(intent);
+//                Intent intent;
+//                intent = new Intent(SignUp.this, Login.class);
+//                startActivity(intent);
 
 
             }
