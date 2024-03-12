@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity {
 // ...
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

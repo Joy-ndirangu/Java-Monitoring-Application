@@ -45,7 +45,7 @@ public class manager_home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                intent = new Intent(manager_home.this, newEmployee.class);
+                intent = new Intent(manager_home.this, Employees_Recycler.class);
                 startActivity(intent);
 
             }        });
@@ -58,7 +58,10 @@ public class manager_home extends AppCompatActivity {
         cardTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Profile Clicked");
+                Intent intent;
+                intent = new Intent(manager_home.this, newEmployee.class);
+                startActivity(intent);
+
             }
         });
         cardInventory.setOnClickListener(new View.OnClickListener() {
