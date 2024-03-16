@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
 
     //variables
-    TextInputLayout regName, regUsername, regEmail, regPassword, regPhone;
+    TextInputLayout regName, defRoles, regEmail, regPassword, regPhone;
     Button reg_btn, tologin;
     ProgressBar progressBar;
     FirebaseDatabase rootnode;
@@ -39,8 +40,8 @@ public class SignUp extends AppCompatActivity {
 
         //hooks to all xml elements in activity_sign_up.xml
         regName = findViewById(R.id.fullname);
-        regUsername = findViewById(R.id.username);
         regEmail = findViewById(R.id.email);
+        defRoles = findViewById(R.id.defRoles);
         regPassword = findViewById(R.id.password);
         regPhone = findViewById(R.id.phone);
         reg_btn = (Button) findViewById(R.id.reg_btn);
@@ -64,14 +65,14 @@ public class SignUp extends AppCompatActivity {
                 reference = rootnode.getReference("users");
 
                 //conditional statement to check for validation using the varous functions for validation
-                if(!validateName() |!validatePassword() | !validatePhoneNo() | !validateEmail() | !validateUserName())
+                if(!validateName() |!validatePassword() | !validatePhoneNo() | !validateEmail() | !validateRoles())
                 {
                     return;
                 }
 
                 //get all the values
                 String name = regName.getEditText().getText().toString();
-                String username = regUsername.getEditText().getText().toString();
+                String roles = defRoles.getEditText().getText().toString();
                 String email = regEmail.getEditText().getText().toString();
                 String password = regPassword.getEditText().getText().toString();
                 String phone = regPhone.getEditText().getText().toString();
@@ -82,9 +83,11 @@ public class SignUp extends AppCompatActivity {
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
+                                Log.d("user data",String.valueOf(mAuth));
 
                                 if (task.isSuccessful()) {
 
@@ -96,6 +99,8 @@ public class SignUp extends AppCompatActivity {
                                     finish();
 
                                 } else {
+                                    Log.d("User Data", "crtea user failure", task.getException());
+
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(SignUp.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
@@ -106,7 +111,8 @@ public class SignUp extends AppCompatActivity {
 
 
                 //calling the userhelper class
-                UserHelperClass helperClass = new UserHelperClass(name, username, email, password, phone);
+                UserHelperClass helperClass = new UserHelperClass(name, email,  password, phone,roles );
+//                User helperClass = new User(name, email,  roles, phone,  password);
 //
 //                // to add more users so that each have an id use child and pass what you'd want to use as id
                 reference.child(phone).setValue(helperClass);//value that will be passed is stored in the database
@@ -141,28 +147,28 @@ public class SignUp extends AppCompatActivity {
             return false;
         } else {
             regName.setError(null);
-            regUsername.setErrorEnabled(false);
+            defRoles.setErrorEnabled(false);
             return true;
         }
 
     }
 
-    private Boolean validateUserName() {
-        String val = regUsername.getEditText().getText().toString();
+    private Boolean validateRoles() {
+        String val = defRoles.getEditText().getText().toString();
         String noWhiteSpace = "\\A\\w{4,20}\\z";
 
         if (val.isEmpty()) {
-            regUsername.setError("field cannot be empty");
+            defRoles.setError("field cannot be empty");
             return false;
         } else if (val.length() > 15) {
-            regUsername.setError("username too long");
+            defRoles.setError("username too long");
             return false;
         } else if (!val.matches(noWhiteSpace)) {
-            regUsername.setError("White Spaces are not allowed");
+            defRoles.setError("White Spaces are not allowed");
             return false;
         } else {
-            regUsername.setError(null);
-            regUsername.setErrorEnabled(false);
+            defRoles.setError(null);
+            defRoles.setErrorEnabled(false);
             return true;
         }
 

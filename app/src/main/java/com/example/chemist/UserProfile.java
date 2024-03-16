@@ -1,5 +1,6 @@
 package com.example.chemist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,38 +8,43 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserProfile extends AppCompatActivity {
 
     //variables
-    TextInputLayout profile_name, profile_username, profile_email, profile_phone, profile_password;
-    TextView fullNameLabel, usernameLabel;
+    TextInputLayout profile_name, profile_role, profile_email, profile_phone;
+
     FirebaseAuth auth;
     FirebaseUser user;
     Button updatebtn;
+    DatabaseReference reference ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-//hooks
+        //hooks
         auth = FirebaseAuth.getInstance();
         profile_name = findViewById(R.id.profile_fullname);
-        profile_username = findViewById(R.id.profile_username);
+        profile_role = findViewById(R.id.profile_role);
         profile_email = findViewById(R.id.profile_email);
         profile_phone = findViewById(R.id.profile_phone);
-        profile_password = findViewById(R.id.profile_password);
-        fullNameLabel = findViewById(R.id.fullname_label);
-        usernameLabel = findViewById(R.id.username_label);
         updatebtn = findViewById(R.id.updatebtn);
+        reference = FirebaseDatabase.getInstance().getReference("users");
 
         //getting details of current logged in user
         user = auth.getCurrentUser();
-//if user is not logged in return to registration
+       //if user is not logged in return to registration
         if (user == null){
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
@@ -47,6 +53,11 @@ public class UserProfile extends AppCompatActivity {
         //setting the email
         else {
             profile_email.getEditText().setText(user.getEmail());
+//            profile_name.getEditText().setText((CharSequence) reference.child("name"));
+////            profile_role.getEditText().setText(user.getR());
+////            profile_phone.getEditText().setText(user.get());
+
+            showAllUserData();
 
         }
         updatebtn.setOnClickListener(new View.OnClickListener() {
@@ -60,23 +71,37 @@ public class UserProfile extends AppCompatActivity {
         });
 
 
-
-
     }
 
     private void showAllUserData() {
-        Intent intent = getIntent();
-        String user_username = intent.getStringExtra("username");
-        String user_name = intent.getStringExtra("name");
-        String user_email = intent.getStringExtra("email");
-        String user_phoneNo = intent.getStringExtra("phone");
-        String user_password = intent.getStringExtra("password");
+        String userID = user.getUid();
+        reference.child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String fullName = snapshot.child("name").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String roles = snapshot.child("roles").getValue(String.class);
+                    String phone = snapshot.child("phone").getValue(String.class);
 
-        fullNameLabel.setText(user_name);
-        usernameLabel.setText(user_username);
-        profile_name.getEditText().setText(user_name);
-        profile_email.getEditText().setText(user_email);
-        profile_phone.getEditText().setText(user_phoneNo);
-        profile_password.getEditText().setText(user_password);
+
+                    profile_name.getEditText().setText(fullName);
+                    profile_email.getEditText().setText(email);
+                    profile_role.getEditText().setText(roles);
+                    profile_phone.getEditText().setText(phone);
+
+
+                }
+                else{
+                    Toast.makeText(UserProfile.this, "User has no access to account",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

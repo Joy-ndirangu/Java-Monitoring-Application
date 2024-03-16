@@ -60,28 +60,28 @@ public class Employees_Recycler extends AppCompatActivity {
 
     }
 
-    //search functionality
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search, menu);
-        MenuItem menuItem = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView)menuItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private  void txtSearch(String str){
-        
-    }
+//    //search functionality
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.search, menu);
+//        MenuItem menuItem = menu.findItem(R.id.search);
+//        SearchView searchView = (SearchView)menuItem.getActionView();
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    private  void txtSearch(String str){
+//
+//    }
 }

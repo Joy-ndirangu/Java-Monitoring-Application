@@ -4,16 +4,16 @@ public class UserHelperClass {
 
 //    Helper class to help store user data
 
-    String name, username, email, password, phone;
+    String name, email, password, phone, roles;
 
     //empty constructor to avoid errors
     public UserHelperClass() {
     }
 
     //constructor
-    public UserHelperClass(String name, String username, String email, String password, String phone) {
+    public UserHelperClass(String name,  String email, String password, String phone, String roles) {
         this.name = name;
-        this.username = username;
+        this.roles = roles;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -28,14 +28,6 @@ public class UserHelperClass {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -60,5 +52,13 @@ public class UserHelperClass {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

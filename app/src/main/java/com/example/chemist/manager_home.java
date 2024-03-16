@@ -67,7 +67,9 @@ public class manager_home extends AppCompatActivity {
         cardInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Widget Clicked");
+                Intent intent;
+                intent = new Intent(manager_home.this, UserProfile.class);
+                startActivity(intent);
             }
         });
         cardSettings.setOnClickListener(new View.OnClickListener() {

@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
     //variables
-    TextInputLayout loginemail, loginpassword;
+    TextInputLayout loginemail, loginpassword ;
     ProgressBar progressBar;
 
     Button noaccount_btn, login_btn;
@@ -42,10 +42,39 @@ public class Login extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    UserHelperClass user = snapshot.getValue(UserHelperClass.class);
+                    if(user != null){
+                        String role = user.getRoles();
+                        if(role == "manager"){
+                            Intent intent = new Intent(getApplicationContext(), manager_home.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            Toast.makeText(Login.this, "User not a manager.",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
             //if already signed in open next activity
-            Intent intent = new Intent(getApplicationContext(), manager_home.class);
-            startActivity(intent);
-            finish();
+//            Intent intent = new Intent(getApplicationContext(), manager_home.class);
+//            startActivity(intent);
+//            finish();
+
         }
     }
 
