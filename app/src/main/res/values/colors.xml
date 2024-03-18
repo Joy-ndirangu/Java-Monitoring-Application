@@ -6,5 +6,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#DFF5FF</color>
-
+    <color name="Label_background">#9FE1FF</color>
 </resources>

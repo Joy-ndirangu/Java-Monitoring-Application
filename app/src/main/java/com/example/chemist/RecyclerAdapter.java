@@ -57,6 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
     //returning the length of the recyclerview
     @Override
     public int getItemCount() {
+
         return arrayList.size();
     }
 

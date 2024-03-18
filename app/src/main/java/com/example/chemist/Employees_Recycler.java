@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +28,8 @@ public class Employees_Recycler extends AppCompatActivity {
     RecyclerAdapter myAdapter;
     ArrayList<RecyclerModel> arrayList;
 
+    FloatingActionButton floatingActionButton;
+
 
 
 
@@ -33,6 +38,8 @@ public class Employees_Recycler extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employees_recycler);
 
+
+        floatingActionButton = findViewById(R.id.floating_button);
         recyclerView = findViewById(R.id.recycler);
         databaseReference = FirebaseDatabase.getInstance().getReference("Employees");
         recyclerView.setHasFixedSize(true);
@@ -55,6 +62,15 @@ public class Employees_Recycler extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(Employees_Recycler.this, newEmployee.class);
+                startActivity(intent);
             }
         });
 

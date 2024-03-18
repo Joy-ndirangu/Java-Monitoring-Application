@@ -99,7 +99,7 @@ public class SignUp extends AppCompatActivity {
                                     finish();
 
                                 } else {
-                                    Log.d("User Data", "crtea user failure", task.getException());
+                                    Log.d("User Data", "create user failure", task.getException());
 
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(SignUp.this, "Authentication failed.",

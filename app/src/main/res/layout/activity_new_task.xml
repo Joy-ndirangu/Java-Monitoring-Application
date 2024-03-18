@@ -7,13 +7,13 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:background="@color/white"
-    tools:context=".SignUp">
+    tools:context=".New_Task">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee Details Form"
+        android:text="New Task"
         android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
@@ -21,13 +21,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         android:padding="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/empid"
+            android:id="@+id/taskName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,87 +37,73 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Employee ID"
+                android:background="@color/Label_background"
+                android:hint="Task Name"
                 android:inputType="text"
-                android:background="@color/Label_background"/>
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Add other TextInputLayouts for employee name, branch, email, phone, and image URL -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/empname"
+            android:id="@+id/startDate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textColorHint="@color/black">
 
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Employee Name"
+                android:background="@color/Label_background"
+                android:hint="Start Date"
                 android:inputType="text"
-                android:background="@color/Label_background"/>
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/branch"
+            android:id="@+id/dueDate"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:textColorHint="@color/black">
 
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Employee Branch"
+                android:background="@color/Label_background"
+                android:hint="Due Date"
                 android:inputType="text"
-                android:background="@color/Label_background"/>
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/empemail"
+            android:id="@+id/schedule_id"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:background="@color/Label_background"
             android:textColorHint="@color/black">
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Employee Email"
-                android:inputType="text"
-                android:background="@color/Label_background"/>
+                android:background="@color/Label_background"
+                android:hint="Schedule"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emp_phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        <Spinner
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColorHint="@color/black">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Employee Phone"
-                android:inputType="text"
-                android:background="@color/Label_background"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/imageurl"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColorHint="@color/black">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Image Url"
-                android:inputType="text"
-                android:background="@color/Label_background"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="48dp"
+            android:spinnerMode="dropdown"
+            android:background="@color/Label_background"
+            />
 
 
     </LinearLayout>
@@ -128,7 +114,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/cancel_emp"
+            android:id="@+id/cancel_task"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -139,15 +125,14 @@
             android:textColor="@color/black"/>
 
         <Button
-            android:id="@+id/save_emp"
+            android:id="@+id/add_tasks"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:text="SAVE"
-
+            android:text="ADD TASK"
+            android:textSize="45px"
             android:backgroundTint="@color/custom_accent"/>
     </LinearLayout>
-
 </LinearLayout>

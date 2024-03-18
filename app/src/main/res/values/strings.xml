@@ -8,5 +8,11 @@
     <string name="content_description_title">This is the title</string>
     <string name="content_description_account">This is the profile icon</string>
     <string name="content_description_more">This displays more actions</string>
+    <string-array name="assignees">
+        <item>Juniour</item>
+        <item>Joy</item>
+        <item>Waithera</item>
+        <item>George</item>
+    </string-array>
 
 </resources>

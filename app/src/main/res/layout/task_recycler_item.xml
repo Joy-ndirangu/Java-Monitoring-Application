@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:elevation="6dp"
+    app:cardUseCompatPadding="true"
+    android:backgroundTint="@color/Label_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycler_taskName"
+            android:text="Task Name"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/dueDate_Label"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recycler_taskName"
+            android:layout_marginLeft="10dp"
+            android:text="Due:"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/recycler_dueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/dueDate_Label"
+            android:text="13/05/2024"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_below="@id/recycler_taskName"/>
+
+        <Button
+            android:id="@+id/detailsbtn"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Details"
+            android:backgroundTint="@color/custom_accent"
+            android:layout_below="@id/recycler_dueDate"/>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

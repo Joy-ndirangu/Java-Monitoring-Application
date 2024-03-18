@@ -15,6 +15,12 @@
         android:theme="@style/CustomTheme"
         tools:targetApi="31">
         <activity
+            android:name=".New_Task"
+            android:exported="false" />
+        <activity
+            android:name=".Tasks"
+            android:exported="false" />
+        <activity
             android:name=".Employees_Recycler"
             android:exported="false" />
         <activity
